@@ -97,8 +97,8 @@ ENV RABBITMQ_PID_FILE=${WORKER}/data/rabbitmq/rabbitmq.pid
 
 # Fetch the external plugins and setup RabbitMQ
 RUN \
-  apk --purge del curl tar gzip \
-  && ln -sf ${WORKER}/data/rabbitmq/.erlang.cookie /root/ \
+  #apk --purge del curl tar gzip \
+  ln -sf ${WORKER}/data/rabbitmq/.erlang.cookie /root/ \
   #&& chown rabbitmq /var/lib/rabbitmq/.erlang.cookie \
   && chmod 0600 ${WORKER}/data/rabbitmq/.erlang.cookie /root/.erlang.cookie  \
   && ls -al /usr/lib/rabbitmq/plugins/ \
