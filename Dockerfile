@@ -63,7 +63,7 @@ ENV TOP_VERSION=3.6.x-2d253d39
 
 RUN cd ${SRC_DIR} \
   && apk --update add coreutils erlang erlang-asn1 erlang-crypto erlang-eldap erlang-erts erlang-inets erlang-mnesia erlang-os-mon erlang-public-key erlang-sasl erlang-ssl erlang-xmerl \
-  && wget -q -O ${SRC_DIR}rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz https://www.rabbitmq.com/releases/rabbitmq-server/v${RABBITMQ_VERSION}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz \
+  && wget -q -O ${SRC_DIR}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz https://www.rabbitmq.com/releases/rabbitmq-server/v${RABBITMQ_VERSION}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz \
   && mkdir -p /usr/lib/rabbitmq/lib /usr/lib/rabbitmq/etc  \
   && cd /usr/lib/rabbitmq/lib \
   #&& tar xvfz /tmp/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz \
