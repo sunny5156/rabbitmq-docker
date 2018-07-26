@@ -120,4 +120,4 @@ RUN \
 EXPOSE 4369 5671 5672 15672 25672
 
 #USER rabbitmq
-CMD /usr/lib/rabbitmq/bin/rabbitmq-server
+#CMD /usr/lib/rabbitmq/bin/rabbitmq-server
