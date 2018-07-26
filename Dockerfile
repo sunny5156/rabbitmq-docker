@@ -100,21 +100,21 @@ RUN \
   && ln -sf /var/lib/rabbitmq/.erlang.cookie /root/ \
   #&& chown rabbitmq /var/lib/rabbitmq/.erlang.cookie \
   && chmod 0600 /var/lib/rabbitmq/.erlang.cookie /root/.erlang.cookie  \
-  && ls -al /usr/lib/rabbitmq/plugins/ \
-  && rabbitmq-plugins list \
-  && rabbitmq-plugins enable --offline \
-        rabbitmq_delayed_message_exchange \
-        rabbitmq_management \
-        rabbitmq_management_visualiser \
-        rabbitmq_consistent_hash_exchange \
-        rabbitmq_federation \
-        rabbitmq_federation_management \
-        rabbitmq_mqtt \
-        rabbitmq_shovel \
-        rabbitmq_shovel_management \
-        rabbitmq_stomp \
-        rabbitmq_top \
-        rabbitmq_web_stomp 
+  && ls -al /usr/lib/rabbitmq/plugins/ 
+  #&& rabbitmq-plugins list \
+  #&& rabbitmq-plugins enable --offline \
+  #      rabbitmq_delayed_message_exchange \
+  #      rabbitmq_management \
+  #      rabbitmq_management_visualiser \
+  #      rabbitmq_consistent_hash_exchange \
+  #      rabbitmq_federation \
+  #      rabbitmq_federation_management \
+  #      rabbitmq_mqtt \
+  #      rabbitmq_shovel \
+  #      rabbitmq_shovel_management \
+  #      rabbitmq_stomp \
+  #      rabbitmq_top \
+  #      rabbitmq_web_stomp 
   #&& chown -R rabbitmq /usr/lib/rabbitmq /var/lib/rabbitmq
 
 EXPOSE 4369 5671 5672 15672 25672
