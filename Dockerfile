@@ -50,7 +50,7 @@ RUN cd ${SRC_DIR} \
 
 ADD shell/.bash_profile /root/
 ADD shell/.bashrc /root/
-ADD run.sh /
+#ADD run.sh /
 
 
 
