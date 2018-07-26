@@ -66,8 +66,8 @@ RUN cd ${SRC_DIR} \
   && wget -q -O ${SRC_DIR}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz https://www.rabbitmq.com/releases/rabbitmq-server/v${RABBITMQ_VERSION}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz \
   && mkdir -p /usr/lib/rabbitmq/lib /usr/lib/rabbitmq/etc  \
   && cd /usr/lib/rabbitmq/lib \
-  #&& tar xvfz /tmp/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz \
   && xz -d ${SRC_DIR}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz \
+  && tar -xfz /tmp/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar \
   #&& rm ${SRC_DIR}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz  \
   && ln -s /usr/lib/rabbitmq/lib/rabbitmq_server-${RABBITMQ_VERSION}/sbin /usr/lib/rabbitmq/bin  \
   && ln -s /usr/lib/rabbitmq/lib/rabbitmq_server-${RABBITMQ_VERSION}/plugins /usr/lib/rabbitmq/plugins  \
@@ -101,20 +101,20 @@ RUN \
   #&& chown rabbitmq /var/lib/rabbitmq/.erlang.cookie \
   && chmod 0600 /var/lib/rabbitmq/.erlang.cookie /root/.erlang.cookie  \
   && ls -al /usr/lib/rabbitmq/plugins/ 
-  #&& rabbitmq-plugins list \
-  #&& rabbitmq-plugins enable --offline \
-  #      rabbitmq_delayed_message_exchange \
-  #      rabbitmq_management \
-  #      rabbitmq_management_visualiser \
-  #      rabbitmq_consistent_hash_exchange \
-  #      rabbitmq_federation \
-  #      rabbitmq_federation_management \
-  #      rabbitmq_mqtt \
-  #      rabbitmq_shovel \
-  #      rabbitmq_shovel_management \
-  #      rabbitmq_stomp \
-  #      rabbitmq_top \
-  #      rabbitmq_web_stomp 
+  && rabbitmq-plugins list \
+  && rabbitmq-plugins enable --offline \
+        rabbitmq_delayed_message_exchange \
+        rabbitmq_management \
+        rabbitmq_management_visualiser \
+        rabbitmq_consistent_hash_exchange \
+        rabbitmq_federation \
+        rabbitmq_federation_management \
+        rabbitmq_mqtt \
+        rabbitmq_shovel \
+        rabbitmq_shovel_management \
+        rabbitmq_stomp \
+        rabbitmq_top \
+        rabbitmq_web_stomp 
   #&& chown -R rabbitmq /usr/lib/rabbitmq /var/lib/rabbitmq
   
   
