@@ -27,7 +27,7 @@ RUN apk add --no-cache git make musl-dev go mongodb
 
 RUN apk add python supervisor
 
-RUN mkdir -p  /data/db ${WORKER}/data/supervisor/log  ${WORKER}/data/supervisor/run  ${WORKER}/src ${WORKER}/data/etcd/log/  ${WORKER}/data/cronsun/log/ ${WORKER}/rabbitmq/plugins/ ${WORKER}/data/rabbitmq/ 
+RUN mkdir -p  /data/db ${WORKER}/data/supervisor/log  ${WORKER}/data/supervisor/run  ${WORKER}/src ${WORKER}/data/etcd/log/  ${WORKER}/data/cronsun/log/ ${WORKER}/rabbitmq/plugins/ ${WORKER}/data/rabbitmq/  /usr/lib/rabbitmq
 
 ADD config ${WORKER}/
 
@@ -65,7 +65,6 @@ ENV RABBITMQ_INSTALL_DIR=${WORKER}/rabbitmq
 RUN cd ${SRC_DIR} \
   && apk --update add coreutils erlang erlang-asn1 erlang-crypto erlang-eldap erlang-erts erlang-inets erlang-mnesia erlang-os-mon erlang-public-key erlang-sasl erlang-ssl erlang-xmerl \
   && wget -q -O ${SRC_DIR}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz https://www.rabbitmq.com/releases/rabbitmq-server/v${RABBITMQ_VERSION}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz \
-  && mkdir -p /usr/lib/rabbitmq/lib /usr/lib/rabbitmq/etc  /usr/lib/rabbitmq/plugins \
   && xz -d ${SRC_DIR}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz \
   && tar -xfz ${SRC_DIR}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar \
   && cp -r ${SRC_DIR}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}/*  ${RABBITMQ_INSTALL_DIR}/ \
@@ -97,8 +96,8 @@ ENV RABBITMQ_PID_FILE=${WORKER}/data/rabbitmq/rabbitmq.pid
 
 # Fetch the external plugins and setup RabbitMQ
 RUN \
-  apk --purge del curl tar gzip \
-  && ln -sf ${WORKER}/data/rabbitmq/.erlang.cookie /root/ \
+  #apk --purge del curl tar gzip \
+  ln -sf ${WORKER}/data/rabbitmq/.erlang.cookie /root/ \
   #&& chown rabbitmq /var/lib/rabbitmq/.erlang.cookie \
   && chmod 0600 ${WORKER}/data/rabbitmq/.erlang.cookie /root/.erlang.cookie  \
   && ls -al /usr/lib/rabbitmq/plugins/ \
