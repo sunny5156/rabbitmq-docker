@@ -114,8 +114,8 @@ RUN \
         rabbitmq_shovel_management \
         rabbitmq_stomp \
         rabbitmq_top \
-        rabbitmq_web_stomp \
-  && chown -R rabbitmq /usr/lib/rabbitmq /var/lib/rabbitmq
+        rabbitmq_web_stomp 
+  #&& chown -R rabbitmq /usr/lib/rabbitmq /var/lib/rabbitmq
 
 EXPOSE 4369 5671 5672 15672 25672
 
