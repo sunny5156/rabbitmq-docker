@@ -80,6 +80,7 @@ RUN cd ${SRC_DIR} \
 ADD config/erlang.cookie ${WORKER}/data/rabbitmq/.erlang.cookie
 ADD config/rabbitmq.config ${WORKER}/data/rabbitmq/etc/rabbitmq/
 
+
 # Environment variables required to run
 ENV ERL_EPMD_PORT=4369
 ENV HOME ${WORKER}/data/rabbitmq
