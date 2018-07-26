@@ -67,7 +67,7 @@ RUN cd ${SRC_DIR} \
   && curl -sL -o ${SRC_DIR}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz https://www.rabbitmq.com/releases/rabbitmq-server/v${RABBITMQ_VERSION}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz \
   && xz -d ${SRC_DIR}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz \
   && tar -xvf ${SRC_DIR}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar \
-  && cp -r ${SRC_DIR}/rabbitmq-server-${RABBITMQ_VERSION}/*  ${RABBITMQ_INSTALL_DIR}/ \
+  && cp -r ${SRC_DIR}/rabbitmq_server-${RABBITMQ_VERSION}/*  ${RABBITMQ_INSTALL_DIR}/ \
   && ln -s ${RABBITMQ_INSTALL_DIR}/sbin /usr/lib/rabbitmq/bin  \
   && ln -s ${RABBITMQ_INSTALL_DIR}/plugins /usr/lib/rabbitmq/plugins  \
   && curl -sL -o  /usr/lib/rabbitmq/plugins/rabbitmq_delayed_message_exchange-${DELAYED_MESSAGE_VERSION}.ez  http://www.rabbitmq.com/community-plugins/${PLUGIN_BASE}/rabbitmq_delayed_message_exchange-${DELAYED_MESSAGE_VERSION}.ez  \
