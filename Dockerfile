@@ -98,7 +98,7 @@ ENV RABBITMQ_PID_FILE=/var/lib/rabbitmq/rabbitmq.pid
 RUN \
   apk --purge del curl tar gzip \
   && ln -sf /var/lib/rabbitmq/.erlang.cookie /root/ \
-  && chown rabbitmq /var/lib/rabbitmq/.erlang.cookie \
+  #&& chown rabbitmq /var/lib/rabbitmq/.erlang.cookie \
   && chmod 0600 /var/lib/rabbitmq/.erlang.cookie /root/.erlang.cookie  \
   && ls -al /usr/lib/rabbitmq/plugins/ \
   && rabbitmq-plugins list \
