@@ -100,7 +100,7 @@ RUN \
   && ln -sf /var/lib/rabbitmq/.erlang.cookie /root/ \
   #&& chown rabbitmq /var/lib/rabbitmq/.erlang.cookie \
   && chmod 0600 /var/lib/rabbitmq/.erlang.cookie /root/.erlang.cookie  \
-  && ls -al /usr/lib/rabbitmq/plugins/ 
+  && ls -al /usr/lib/rabbitmq/plugins/ \
   && rabbitmq-plugins list \
   && rabbitmq-plugins enable --offline \
         rabbitmq_delayed_message_exchange \
