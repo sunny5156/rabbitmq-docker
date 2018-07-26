@@ -116,8 +116,13 @@ RUN \
   #      rabbitmq_top \
   #      rabbitmq_web_stomp 
   #&& chown -R rabbitmq /usr/lib/rabbitmq /var/lib/rabbitmq
+  
+  
+RUN echo -e "#!/bin/bash\n/usr/sbin/sshd -D \n/usr/lib/rabbitmq/bin/rabbitmq-server\nnohup supervisord -c /worker/supervisor/supervisord.conf" >>/etc/start.sh
 
 EXPOSE 4369 5671 5672 15672 25672
 
 #USER rabbitmq
 #CMD /usr/lib/rabbitmq/bin/rabbitmq-server
+
+CMD ["/bin/sh","/etc/start.sh"]
