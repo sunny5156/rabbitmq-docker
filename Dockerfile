@@ -27,7 +27,7 @@ RUN apk add --no-cache git make musl-dev go mongodb
 
 RUN apk add python supervisor
 
-RUN mkdir -p  /data/db ${WORKER}/data/supervisor/log  ${WORKER}/data/supervisor/run  ${WORKER}/src ${WORKER}/data/etcd/log/  ${WORKER}/data/cronsun/log/ ${WORKER}/rabbitmq/plugins/ ${WORKER}/data/rabbitmq/
+RUN mkdir -p  /data/db ${WORKER}/data/supervisor/log  ${WORKER}/data/supervisor/run  ${WORKER}/src ${WORKER}/data/etcd/log/  ${WORKER}/data/cronsun/log/ ${WORKER}/rabbitmq/plugins/ ${WORKER}/data/rabbitmq/ 
 
 ADD config ${WORKER}/
 
@@ -65,11 +65,10 @@ ENV RABBITMQ_INSTALL_DIR=${WORKER}/rabbitmq
 RUN cd ${SRC_DIR} \
   && apk --update add coreutils erlang erlang-asn1 erlang-crypto erlang-eldap erlang-erts erlang-inets erlang-mnesia erlang-os-mon erlang-public-key erlang-sasl erlang-ssl erlang-xmerl \
   && wget -q -O ${SRC_DIR}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz https://www.rabbitmq.com/releases/rabbitmq-server/v${RABBITMQ_VERSION}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz \
-  && mkdir -p /usr/lib/rabbitmq/lib /usr/lib/rabbitmq/etc  \
-  #&& cd /usr/lib/rabbitmq/lib \
+  && mkdir -p /usr/lib/rabbitmq/lib /usr/lib/rabbitmq/etc  /usr/lib/rabbitmq/plugins \
   && xz -d ${SRC_DIR}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz \
   && tar -xfz ${SRC_DIR}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar \
-  && cp ${SRC_DIR}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}/*  ${RABBITMQ_INSTALL_DIR}/ \
+  && cp -r ${SRC_DIR}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}/*  ${RABBITMQ_INSTALL_DIR}/ \
   && ln -s ${RABBITMQ_INSTALL_DIR}/sbin /usr/lib/rabbitmq/bin  \
   && ln -s ${RABBITMQ_INSTALL_DIR}/plugins /usr/lib/rabbitmq/plugins  \
   && wget -q -O  /usr/lib/rabbitmq/plugins/rabbitmq_delayed_message_exchange-${DELAYED_MESSAGE_VERSION}.ez  http://www.rabbitmq.com/community-plugins/${PLUGIN_BASE}/rabbitmq_delayed_message_exchange-${DELAYED_MESSAGE_VERSION}.ez  \
