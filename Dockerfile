@@ -64,14 +64,14 @@ ENV RABBITMQ_INSTALL_DIR=${WORKER}/rabbitmq
 
 RUN cd ${SRC_DIR} \
   && apk --update add coreutils erlang erlang-asn1 erlang-crypto erlang-eldap erlang-erts erlang-inets erlang-mnesia erlang-os-mon erlang-public-key erlang-sasl erlang-ssl erlang-xmerl \
-  && wget -q -O ${SRC_DIR}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz https://www.rabbitmq.com/releases/rabbitmq-server/v${RABBITMQ_VERSION}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz \
+  && curl -sL -o ${SRC_DIR}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz https://www.rabbitmq.com/releases/rabbitmq-server/v${RABBITMQ_VERSION}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz \
   && xz -d ${SRC_DIR}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz \
   && tar -xfz ${SRC_DIR}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar \
   && cp -r ${SRC_DIR}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}/*  ${RABBITMQ_INSTALL_DIR}/ \
   && ln -s ${RABBITMQ_INSTALL_DIR}/sbin /usr/lib/rabbitmq/bin  \
   && ln -s ${RABBITMQ_INSTALL_DIR}/plugins /usr/lib/rabbitmq/plugins  \
-  && wget -q -O  /usr/lib/rabbitmq/plugins/rabbitmq_delayed_message_exchange-${DELAYED_MESSAGE_VERSION}.ez  http://www.rabbitmq.com/community-plugins/${PLUGIN_BASE}/rabbitmq_delayed_message_exchange-${DELAYED_MESSAGE_VERSION}.ez  \
-  && wget -q -O  /usr/lib/rabbitmq/plugins/rabbitmq_top-${TOP_VERSION}.ez http://www.rabbitmq.com/community-plugins/${PLUGIN_BASE}/rabbitmq_top-${TOP_VERSION}.ez
+  && curl -sL -o  /usr/lib/rabbitmq/plugins/rabbitmq_delayed_message_exchange-${DELAYED_MESSAGE_VERSION}.ez  http://www.rabbitmq.com/community-plugins/${PLUGIN_BASE}/rabbitmq_delayed_message_exchange-${DELAYED_MESSAGE_VERSION}.ez  \
+  && curl -sL -o  /usr/lib/rabbitmq/plugins/rabbitmq_top-${TOP_VERSION}.ez http://www.rabbitmq.com/community-plugins/${PLUGIN_BASE}/rabbitmq_top-${TOP_VERSION}.ez
   #&& rm ${SRC_DIR}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz  \
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
@@ -122,7 +122,6 @@ RUN echo -e "#!/bin/bash\n/usr/sbin/sshd -D \n/usr/lib/rabbitmq/bin/rabbitmq-ser
 
 EXPOSE 4369 5671 5672 15672 25672
 
-#USER rabbitmq
 #CMD /usr/lib/rabbitmq/bin/rabbitmq-server
 
 CMD ["/bin/sh","/etc/start.sh"]
