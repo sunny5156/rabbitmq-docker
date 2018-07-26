@@ -27,7 +27,7 @@ RUN apk add --no-cache git make musl-dev go mongodb
 
 RUN apk add python supervisor
 
-RUN mkdir -p  /data/db ${WORKER}/data/supervisor/log  ${WORKER}/data/supervisor/run  ${WORKER}/src ${WORKER}/data/etcd/log/  ${WORKER}/data/cronsun/log/ ${WORKER}/rabbitmq/plugins/ ${WORKER}/data/rabbitmq/  /usr/lib/rabbitmq
+RUN mkdir -p  /data/db ${WORKER}/data/supervisor/log  ${WORKER}/data/supervisor/run  ${WORKER}/src ${WORKER}/data/etcd/log/  ${WORKER}/data/cronsun/log/ ${WORKER}/rabbitmq/plugins/ ${WORKER}/data/rabbitmq/  /usr/lib/rabbitmq/
 
 ADD config ${WORKER}/
 
